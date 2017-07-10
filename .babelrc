@@ -1,0 +1,21 @@
+{
+  "presets": [
+    "env",
+    "react"
+  ],
+  "plugins": [
+    "glamorous-displayname",
+    "transform-object-rest-spread",
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./src"
+        ],
+        "alias": {
+          "modules": "./modules"
+        }
+      }
+    ]
+  ]
+}

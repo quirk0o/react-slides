@@ -1,0 +1,71 @@
+{
+  "name": "react-slides",
+  "version": "1.0.0",
+  "main": "entry.jsx",
+  "repository": "https://github.com/quirk0o/react-slides.git",
+  "author": "quirk0o",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=${NODE_ENV:-development} API_URL=${API_URL:-http://localhost:4567} PORT=${PORT:-9000} webpack-dev-server",
+    "package": "NODE_ENV=${NODE_ENV:-production} webpack -p --progress",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.0.0",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-glamorous-displayname": "^1.1.3",
+    "babel-plugin-lodash": "^3.2.11",
+    "babel-plugin-module-resolver": "^2.7.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "babel-runtime": "^6.23.0",
+    "chai": "^4.0.2",
+    "chai-enzyme": "^0.8.0",
+    "chroma": "^0.0.1",
+    "classnames": "^2.2.5",
+    "css-loader": "^0.28.1",
+    "enzyme": "^2.9.1",
+    "enzyme-to-json": "^1.5.1",
+    "file-loader": "^0.11.1",
+    "glamor": "^3.0.0-2",
+    "glamorous": "^3.23.5",
+    "history": "^4.6.1",
+    "html-webpack-plugin": "^2.28.0",
+    "jest": "^20.0.0",
+    "jest-enzyme": "^3.1.0",
+    "lodash": "^4.17.4",
+    "node-sass": "^4.5.2",
+    "postcss-loader": "^1.3.3",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-addons-test-utils": "^15.6.0",
+    "react-dom": "^15.5.4",
+    "react-hot-loader": "next",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "redux-logger": "^3.0.1",
+    "redux-mock-store": "^1.2.3",
+    "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.0",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.17.0",
+    "styled-components": "^2.1.1",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/fileMock.js",
+      "\\.(css|less|scss|sass)$": "<rootDir>/test/__mocks__/styleMock.js"
+    },
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/test/index.js"
+  }
+}

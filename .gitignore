@@ -1,0 +1,10 @@
+# IntelliJ project files
+.idea/workspace.xml
+.idea/watcherTasks.xml
+out
+gen
+
+*.lock
+*.log
+
+node_modules
