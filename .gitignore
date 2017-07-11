@@ -4,7 +4,6 @@
 out
 gen
 
-*.lock
 *.log
 
 node_modules
