@@ -54,6 +54,14 @@ const config = {
   ],
   module: {
     rules: [
+      // {
+      //   test: require.resolve('babel-standalone'),
+      //   use: 'imports-loader?window=>{}'
+      // },
+      // {
+      //   test: require.resolve('babel-standalone'),
+      //   use: 'exports-loader?Babel=window.Babel'
+      // },
       {
         test: /\.js(x)?$/,
         exclude: /(node_modules|bower_components)/,
