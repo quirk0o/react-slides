@@ -3,7 +3,7 @@ import CodeMirror from 'react-codemirror'
 
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/jsx/jsx'
-import Output from 'modules/editor/components/output'
+import Preview from './preview'
 
 class CMEditor extends Component {
   constructor(...args) {
@@ -27,7 +27,7 @@ class CMEditor extends Component {
           }}
           autoFocus
         />
-        <Output code={this.state.code} />
+        <Preview code={this.state.code} />
       </div>
     )
   }

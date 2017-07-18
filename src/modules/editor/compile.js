@@ -1,9 +1,7 @@
-import Babel, * as babelAll from 'babel-standalone'
-
-console.log(Babel, babelAll)
+import {transform} from 'babel-standalone'
 
 export default function (code) {
-  return babelAll.transform(
+  return transform(
     code,
     {
       presets: ['latest', 'react']
