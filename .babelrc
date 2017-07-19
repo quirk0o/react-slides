@@ -4,7 +4,6 @@
     "react"
   ],
   "plugins": [
-    "glamorous-displayname",
     "transform-object-rest-spread",
     [
       "module-resolver",

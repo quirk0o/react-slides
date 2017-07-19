@@ -4,15 +4,28 @@ import PropTypes from 'prop-types'
 import glamorous from 'glamorous'
 
 import compile from '../compile'
+import BoxButton from 'modules/editor/components/box-button'
 
 window.React = require('react')
 window.glamorous = require('glamorous').default
+
+const {Div} = glamorous
 
 const EditorError = glamorous.pre({
   color: 'red'
 })
 
 class Preview extends React.Component {
+  constructor(...args) {
+    super(...args)
+
+    this.handleRun = this.handleRun.bind(this)
+  }
+
+  handleRun() {
+    this.executeCode(this.props.code)
+  }
+
   executeCode(code) {
     try {
       ReactDOM.unmountComponentAtNode(this.mountNode)
@@ -45,7 +58,16 @@ class Preview extends React.Component {
   }
 
   render() {
-    return <div ref={ref => this.mountNode = ref} />
+    return (
+      <Div
+        padding={20}
+        display={!this.props.display && 'none'}
+        position="relative"
+      >
+        <div ref={ref => this.mountNode = ref} />
+        <BoxButton onClick={this.handleRun}>Run</BoxButton>
+      </Div>
+    )
   }
 }
 
