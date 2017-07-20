@@ -12,10 +12,29 @@ function wrapConsole(method, callback) {
 
 const ConsoleMessages = glamorous.ul({
   overflow: 'scroll',
-  boxSizing: 'border-box',
   margin: 0,
-  height: 250
+  height: '100%',
+  fontSize: 14,
+  listStyle: 'none',
+  padding: 0
 })
+
+const ConsoleMessage = glamorous.li({
+  borderBottom: '1px solid #ddd',
+  padding: '5px 20px',
+  '> pre': {margin: 0}
+})
+
+function messageToString(msg) {
+  if (typeof msg === 'undefined') {
+    return 'undefined'
+  }
+  if (msg === null) {
+    return 'null'
+  }
+
+  return msg.toString()
+}
 
 class Console extends React.Component {
   constructor(...args) {
@@ -26,30 +45,31 @@ class Console extends React.Component {
   }
 
   componentDidMount() {
-    const _log = console.log,
-      _warn = console.warn,
-      _error = console.error
+    this._log = console.log
+    this._warn = console.warn
+    this._error = console.error
 
     console.log = (...args) => {
-      this.setState({console: this.state.console.concat([{type: 'log', args}])})
-      return _log.apply(console, args)
+      this.state.console.push({type: 'log', args})
+      this.setState({console: this.state.console})
+      return this._log.apply(console, args)
     }
 
     console.warn = (...args) => {
-      this.setState({console: this.state.console.concat([{type: 'warn', args}])})
-      return _warn.apply(console, args)
+      this.state.console.push({type: 'warn', args})
+      this.setState({console: this.state.console})
+      return this._warn.apply(console, args)
     }
 
     console.error = (...args) => {
-      this.setState({console: this.state.console.concat([{type: 'error', args}])})
-      return _error.apply(console, args)
+      this.state.console.push({type: 'error', args})
+      this.setState({console: this.state.console})
+      return this._error.apply(console, args)
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.console.length > prevState.console.length) {
-      this.messagesNode.scrollTop = this.messagesNode.scrollHeight
-    }
+    this.messagesNode.scrollTop = this.messagesNode.scrollHeight
   }
 
   handleClear() {
@@ -61,9 +81,9 @@ class Console extends React.Component {
       <div className={this.props.className}>
         <ConsoleMessages innerRef={ref => this.messagesNode = ref}>
           {this.state.console.map(({type, args}, index) => (
-            <li key={index}>
-              <pre>{args.map(arg => arg.toString()).join(' ')}</pre>
-            </li>
+            <ConsoleMessage key={index}>
+              <pre>{args.map(arg => messageToString(arg)).join(' ')}</pre>
+            </ConsoleMessage>
           ))}
         </ConsoleMessages>
         <BoxButton onClick={this.handleClear}>Clear</BoxButton>
@@ -75,6 +95,5 @@ class Console extends React.Component {
 Console.propTypes = {}
 
 export default glamorous(Console)({
-  position: 'relative',
-  gridColumnEnd: 'span 2'
+  position: 'relative'
 })

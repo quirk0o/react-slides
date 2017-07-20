@@ -7,6 +7,7 @@ import compile from '../compile'
 import BoxButton from 'modules/editor/components/box-button'
 
 window.React = require('react')
+window.ReactDOM = require('react-dom')
 window.glamorous = require('glamorous').default
 
 const {Div} = glamorous
@@ -33,7 +34,7 @@ class Preview extends React.Component {
     try {
       clearTimeout(this.timeout)
       ReactDOM.render(
-        eval(compile(`(function () { ${code} })()`)),
+        eval(compile(`(function () { \n${code}\n }).bind({})()`)) || <div />,
         this.mountNode
       )
     } catch (e) {

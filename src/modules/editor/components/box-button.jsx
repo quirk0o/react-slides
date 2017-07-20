@@ -1,7 +1,9 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
 import glamorous from 'glamorous'
 
-const BoxButton = glamorous.button({
+import {Button} from 'modules/base'
+
+const BoxButton = glamorous(Button)({
   position: 'absolute',
   top: 10,
   right: 10

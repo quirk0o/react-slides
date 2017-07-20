@@ -1,7 +1,17 @@
 @import "~normalize.css/normalize.css";
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700,900');
 
 :global{
   html, body, #root {
     height: 100%;
+  }
+
+  html {
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+    font-family: inherit;
   }
 }
