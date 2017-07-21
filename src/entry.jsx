@@ -3,16 +3,16 @@ import './assets/app.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {AppContainer} from 'react-hot-loader'
-import {BrowserRouter} from 'react-router-dom'
+import {HashRouter} from 'react-router-dom'
 
 import App from './app'
 
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
-      <BrowserRouter>
+      <HashRouter>
         <Component />
-      </BrowserRouter>
+      </HashRouter>
     </AppContainer>,
     document.getElementById('root')
   )
