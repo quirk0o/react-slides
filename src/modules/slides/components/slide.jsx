@@ -35,8 +35,7 @@ export default glamorous(Slide)({
   display: 'flex',
   flexDirection: 'column',
   height: '100%',
-  padding: 100,
-  paddingBottom: 200,
+  padding: '4%',
   '> h2': {flex: 'none'},
   '> p': {flex: 'none'},
   '> div': {flex: 'auto'}
