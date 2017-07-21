@@ -72,6 +72,12 @@ class Console extends React.Component {
     this.messagesNode.scrollTop = this.messagesNode.scrollHeight
   }
 
+  componentWillUnmount() {
+    console.log = this._log
+    console.warn = this._warn
+    console.error = this._error
+  }
+
   handleClear() {
     this.setState({console: []})
   }

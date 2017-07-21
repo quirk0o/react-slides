@@ -49,12 +49,14 @@ class Preview extends React.Component {
   }
 
   componentDidMount() {
-    this.executeCode(this.props.code)
+    console.log('mount')
+    // this.executeCode(this.props.code)
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.code !== this.props.code) {
-      this.executeCode(nextProps.code)
+      console.log('new props')
+      // this.executeCode(nextProps.code)
     }
   }
 
