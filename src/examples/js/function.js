@@ -1,6 +1,10 @@
-var a = 1;
+var a = 'outer a'
+var b = 'outer b'
 
-(function() {
-  var a = 2
-  console.log('a', a)
-})()
+function invokeMe() {
+  var a = 'inner a'
+  console.log('a: ', a)
+  console.log('b: ', b)
+}
+
+invokeMe()

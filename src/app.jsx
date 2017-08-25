@@ -7,7 +7,14 @@ import {Slide} from 'modules/slides'
 const jsSlides = [
   {
     header: 'Function scope',
-    description: '',
+    description: (
+      <div>
+        <p>JavaScript has function scope: The scope changes inside functions.</p>
+        <p>Variables declared within a JavaScript function, become <strong>local</strong> to the function. They can only be accessed within the function.</p>
+        <p>A variable declared outside any function, becomes <strong>global</strong>. All scripts and functions in the application can access it.</p>
+        <p>If there is both a local and global variable with the same name the local variable shadows the global variable.</p>
+      </div>
+    ),
     code: require('!raw-loader!./examples/js/function')
   },
   {
