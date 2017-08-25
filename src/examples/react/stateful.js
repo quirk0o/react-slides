@@ -17,7 +17,7 @@ class MyStatefulComponent extends React.Component {
         <input value={this.state.value} onChange={this.handleChange} />
         <p>{this.props.a}</p>
       </div>
-    );
+    )
   }
 }
 

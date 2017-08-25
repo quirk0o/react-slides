@@ -77,6 +77,11 @@ const reactSlides = [
     code: require('!raw-loader!./examples/react/stateless')
   },
   {
+    header: 'Rendering Lists',
+    description: '',
+    code: require('!raw-loader!./examples/react/rendering_lists')
+  },
+  {
     header: 'Stateful Component',
     description: '',
     code: require('!raw-loader!./examples/react/stateful')
@@ -110,8 +115,7 @@ const reactSlides = [
     header: 'Styles',
     description: '',
     code: require('!raw-loader!./examples/react/styles')
-  },
-  {}
+  }
 ]
 
 const App = () => (

@@ -16,3 +16,9 @@ function giveMeArguments(a, b, c) {
   console.log('arguments', a, b, c)
 }
 giveMeArguments(...arr) // additional arguments will be ignored
+
+/* You can use it to capture all arguments of a function */
+function giveMeAllArguments(...args) {
+  console.log(args)
+}
+giveMeAllArguments(1, 2, 3)
