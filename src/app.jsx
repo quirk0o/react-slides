@@ -34,7 +34,13 @@ const jsSlides = [
   },
   {
     header: 'Arrow functions',
-    description: '',
+    description: (
+      <div>
+        <p>An arrow function expression has a shorter syntax than a function expression.</p>
+        <p>It does not bind its own this, arguments.</p>
+        <p>These function expressions are best suited for non-method functions, and they cannot be used as constructors.</p>
+      </div>
+    ),
     code: require('!raw-loader!./examples/js/arrow')
   },
   {
@@ -54,7 +60,7 @@ const jsSlides = [
   },
   {
     header: 'Spread operator',
-    description: '',
+    description: 'It\'s like destructuring but for arrays!',
     code: require('!raw-loader!./examples/js/spread')
   },
   {

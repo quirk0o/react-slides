@@ -1,8 +1,13 @@
-const destructureMe = {foo: 'bar', a: 1}
-const {foo, _} = destructureMe
-console.log(foo)
+const destructureMe = {foo: 'foo', bar: 'bar', unwanted: 'unwanted'}
 
-function abcde({test}) {
-  console.log(test)
+/* You can pick and choose properties (as many as you want)
+ * You can assign to a variable with a different name too
+*/
+const {foo, bar: cookieMonster} = destructureMe
+console.log(foo, cookieMonster)
+
+/* You can also destructure function arguments */
+function iEatObjects({foo}) {
+  console.log(foo)
 }
-abcde({test: 'test'})
+iEatObjects({foo: 'foo'})

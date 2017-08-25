@@ -1,19 +1,31 @@
-function fun2 () {
-  console.log('Fun with JS')
+function namedFunction () {
+  return 'named'
 }
+console.log(namedFunction())
 
-const fun3 = () => {
-  console.log('Fun with JS')
+const arrowFunction = () => {
+  return 'arrow'
 }
+console.log(arrowFunction())
 
-const fun4 = () => 42
+const shorthandArrowFunction = () => 'shorthand'
+console.log(shorthandArrowFunction())
 
-const o2 = {
-  bar: 'bar',
-  foo() {
-    console.log(this.bar)
+const anObject = {
+  prop: 'prop',
+  foo: function() {
+    return this.prop
+  },
+  foofoo: function() {
+    return () => this.prop
   }
 }
-o2.foo2 = () => console.log(this.bar)
-o2.foo()
-o2.foo2()
+anObject.foo() // `foo` has `this` bound to `anObject`
+
+/* Arrow functions do not have their own context and they cannot be bound */
+anObject.arrowfoo = () => this.prop
+console.log('arrowfoo', anObject.arrowfoo())
+console.log('bound arrowfoo', anObject.arrowfoo.bind(anObject)())
+
+/* They share the context of the enclosing scope */
+console.log('foofoo', anObject.foofoo()())

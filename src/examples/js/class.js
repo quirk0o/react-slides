@@ -1,17 +1,36 @@
-class MyClass {
-  constructor() {
+class Person {
+  constructor(name, age) {
+    this._name = name
+    this.age = age
   }
 
-  aMethod() {
-    console.log('public')
+  isOfAge() {
+    return this.age > 18
   }
 
-  _aPrivateMethod() {
-    console.log('private')
-    // not really :(
+  _privateName() {
+    return 'Superman'
+    // not really private :(
+    // just a convention
+  }
+
+  get name() {
+    return this._name
+  }
+
+  set name(name) {
+    this._name = name
   }
 }
 
-const myClassInstance = new MyClass()
-myClassInstance.aMethod()
-myClassInstance._aPrivateMethod()
+const bob = new Person('Bob', 40)
+console.log('Bob is of age', bob.isOfAge())
+console.log('Bob\'s private name', bob._privateName())
+
+class Child extends Person {
+
+}
+
+const bobJr = new Child('Bob Junior', 10)
+console.log('Bob Junior is a Child', bobJr instanceof Child)
+console.log('Bob Junior is a Person', bobJr instanceof Person)
