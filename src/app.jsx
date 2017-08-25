@@ -19,17 +19,17 @@ const jsSlides = [
   },
   {
     header: 'Closures',
-    description: '',
+    description: 'Closure is when a function can remember and access its lexical scope even when it’s invoked outside its lexical scope.',
     code: require('!raw-loader!./examples/js/closures')
   },
   {
     header: 'Bind',
-    description: '',
+    description: 'The bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.',
     code: require('!raw-loader!./examples/js/bind')
   },
   {
     header: 'Let, Const',
-    description: '',
+    description: 'We used to use var for everything but ES6 provides us with a better alternative.',
     code: require('!raw-loader!./examples/js/letconst')
   },
   {

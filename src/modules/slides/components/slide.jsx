@@ -19,7 +19,7 @@ const Slide = ({header, description, code, panes, id, maxId, className}) => (
   <div className={className}>
     {id > 1 && <Link to={`${id - 1}`}><NavArrow left size={30} color="#ddd" clickable /></Link>}
     <Header>{header}</Header>
-    <p>{description}</p>
+    {typeof description === 'string' ? <p>{description}</p> : description}
     <CMEditor initialValue={code} panes={panes} />
     {id < maxId && <Link to={`${id + 1}`}><NavArrow right size={30} color="#ddd" clickable /></Link>}
   </div>
