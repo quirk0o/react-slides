@@ -1,10 +1,10 @@
-const Component = () => (
+const StyledComponent = () => (
   <div
     className='a-class'
-    style={{backgroundColor: 'black', color: 'white'}}
+    style={{border: '1px solid black', fontSize: 16, padding: 20}}
   >
     Text
   </div>
 )
 
-return <Component />
+return <StyledComponent />

@@ -10,9 +10,12 @@ const jsSlides = [
     description: (
       <div>
         <p>JavaScript has function scope: The scope changes inside functions.</p>
-        <p>Variables declared within a JavaScript function, become <strong>local</strong> to the function. They can only be accessed within the function.</p>
-        <p>A variable declared outside any function, becomes <strong>global</strong>. All scripts and functions in the application can access it.</p>
-        <p>If there is both a local and global variable with the same name the local variable shadows the global variable.</p>
+        <p>Variables declared within a JavaScript function, become <strong>local</strong> to the function. They can only
+          be accessed within the function.</p>
+        <p>A variable declared outside any function, becomes <strong>global</strong>. All scripts and functions in the
+          application can access it.</p>
+        <p>If there is both a local and global variable with the same name the local variable shadows the global
+          variable.</p>
       </div>
     ),
     code: require('!raw-loader!./examples/js/function')
@@ -38,7 +41,8 @@ const jsSlides = [
       <div>
         <p>An arrow function expression has a shorter syntax than a function expression.</p>
         <p>It does not bind its own this, arguments.</p>
-        <p>These function expressions are best suited for non-method functions, and they cannot be used as constructors.</p>
+        <p>These function expressions are best suited for non-method functions, and they cannot be used as
+          constructors.</p>
       </div>
     ),
     code: require('!raw-loader!./examples/js/arrow')
@@ -72,14 +76,40 @@ const jsSlides = [
 
 const reactSlides = [
   {
-    header: 'Stateless Component',
-    description: '',
+    header: 'Basic component',
+    description: 'You use JSX to define your components. JSX is a mix of JS and HTML but it compiles into JS underneath.',
     code: require('!raw-loader!./examples/react/stateless')
+  },
+  {
+    header: 'Styling a component',
+    description: (
+      <div>
+        <p>You can provide an existing CSS class using the `className` prop.</p>
+        <p>You can define an inline style with an object with keys as camelCased CSS properties.</p>
+        <p>Integer values automatically get converted to 'px'.</p>
+      </div>
+    ),
+    code: require('!raw-loader!./examples/react/styles')
+  },
+  {
+    header: 'Composing components',
+    description: 'The main idea behind React is to compose your application of reusable chunks.',
+    code: require('!raw-loader!./examples/react/composition')
   },
   {
     header: 'Rendering Lists',
     description: '',
-    code: require('!raw-loader!./examples/react/rendering_lists')
+    code: require('!raw-loader!./examples/react/rendering-lists')
+  },
+  {
+    header: 'Different ways of declaring components',
+    description: '',
+    code: require('!raw-loader!./examples/react/declaring')
+  },
+  {
+    header: 'A component has to return a single element',
+    description: '',
+    code: require('!raw-loader!./examples/react/single-element')
   },
   {
     header: 'Stateful Component',
@@ -87,9 +117,39 @@ const reactSlides = [
     code: require('!raw-loader!./examples/react/stateful')
   },
   {
-    header: 'Uncontrolled input',
-    description: '',
+    header: 'Controlled input',
+    description: 'A controlled input means that you take control of managing the input\'s value.',
+    code: require('!raw-loader!./examples/react/controlled-input')
+  },
+  {
+    header: 'Refs',
+    description: (
+      <div>
+        <p>Refs allow you to manipulate the underlying DOM Elements. Use this feature very sparingly!</p>
+        <p>This might be useful in the following scenarios:</p>
+        <ul>
+          <li>You need to focus an input.</li>
+          <li>You need to use the API of the DOM element/component from a library you're using.</li>
+          <li>You need to provide compatibility with legacy (aka. jQuery) solutions.</li>
+        </ul>
+      </div>
+    ),
     code: require('!raw-loader!./examples/react/uncontrolled')
+  },
+  {
+    header: 'Uncontrolled input',
+    description: 'An uncontrolled input means that the inputs value is managed internally by the input. You can read/write the value with refs.',
+    code: require('!raw-loader!./examples/react/uncontrolled')
+  },
+  {
+    header: 'Lifecycle Methods',
+    description: (
+      <div>
+        Please open <a href="https://reactarmory.com/guides/lifecycle-simulators" target="_blank">this link</a>.
+        <a href="http://busypeoples.github.io/post/react-component-lifecycle/" target="_blank">Lifecycle</a>.
+      </div>
+    ),
+    panes: []
   },
   {
     header: 'Lifecycle Methods Example',
@@ -110,11 +170,6 @@ const reactSlides = [
     header: 'Children',
     description: '',
     code: require('!raw-loader!./examples/react/children')
-  },
-  {
-    header: 'Styles',
-    description: '',
-    code: require('!raw-loader!./examples/react/styles')
   }
 ]
 

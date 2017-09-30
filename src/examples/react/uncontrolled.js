@@ -1,25 +1,18 @@
-class UncontrolledInputExample extends React.Component {
-  constructor(...args) {
-    super(...args)
-
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  handleSubmit() {
-    const value = this.input.value
-    console.log(value)
-    // ...
-  }
-
+class UncontrolledInput extends React.Component {
   render() {
     return (
       <div>
         <label>Uncontrolled input</label>
         <input ref={ref => this.input = ref} />
-        <button type="button" onClick={this.handleSubmit}>Submit</button>
       </div>
-    );
+    )
   }
 }
 
-return <UncontrolledInputExample />
+return <UncontrolledInput />
+
+/*
+ * EXERCISE
+ * ========
+ * Add a button that will double the content of the input when clicked.
+ */

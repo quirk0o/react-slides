@@ -64,6 +64,7 @@ class Preview extends React.Component {
         padding={20}
         display={!this.props.display && 'none'}
         position="relative"
+        overflow="scroll"
       >
         <div ref={ref => this.mountNode = ref} />
         <BoxButton onClick={this.handleRun}>Run</BoxButton>

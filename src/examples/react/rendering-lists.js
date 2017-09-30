@@ -21,5 +21,7 @@ return (
 )
 
 /*
- * Task: Extract ListItem to a separate component.
+ * EXERCISE
+ * ========
+ * Extract ListItem to a separate component.
  */

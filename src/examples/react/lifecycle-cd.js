@@ -24,8 +24,18 @@ class Parent extends React.Component {
 
 class Child extends React.Component {
   componentWillReceiveProps(nextProps) {
-    console.log(`current props: ${this.props.name}`)
-    console.log(`next props: ${nextProps.name}`)
+    /*
+     * This is called whenever the component props change.
+     * You can use this method to modify the state based on the changing props.
+     * Changing state here will not cause an additional render.
+     *
+     * IMPORTANT: Always check that the prop you're using has actually changed
+     */
+
+    if (nextProps.name !== this.props.name) {
+      console.log(`current props: ${this.props.name}`)
+      console.log(`next props: ${nextProps.name}`)
+    }
   }
 
   render() {
@@ -34,3 +44,9 @@ class Child extends React.Component {
 }
 
 return <Parent />
+
+/*
+ * EXERCISE
+ * ========
+ * Style the name pink when it's a girl (ends with 'a') and blue when it's a boy.
+ */

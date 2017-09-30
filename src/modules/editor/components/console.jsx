@@ -32,6 +32,9 @@ function messageToString(msg) {
   if (msg === null) {
     return 'null'
   }
+  if (typeof msg === 'object') {
+    return JSON.stringify(msg)
+  }
 
   return msg.toString()
 }

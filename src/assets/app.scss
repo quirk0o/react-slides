@@ -14,4 +14,9 @@
     box-sizing: inherit;
     font-family: inherit;
   }
+
+  .composition-container, .composition-container > * {
+    border: 1px solid black;
+    padding: 20px;
+  }
 }

@@ -1,55 +1,83 @@
 class LifecycleExample extends React.Component {
-  constructor(...args) {
-    super(...args)
+  constructor(props) {
+    super(props)
+
+    /*
+     * Only simple setup goes here like setting instance variables and binding methods.
+     * This is only called once when the component is created.
+     */
+
     this.state = {value: 1}
+
+    this.increment = this.increment.bind(this)
     console.log('constructed')
   }
 
   componentWillMount() {
+    /*
+     * This gets called before the first render
+     */
     console.log('mounting')
   }
 
   componentDidMount() {
-    // API calls, setup etc.
+    /*
+     * Any initial setup goes here like making API calls.
+     * This gets called after the first render.
+     */
     console.log('mounted')
-
-    this.interval = setInterval(
-      () => {
-        console.log(this.state.value)
-        this.setState({value: this.state.value + 1})
-      },
-      1000)
-
   }
 
-  componentWillReceiveProps(nextProps) {
-    // e.g. change state based on new props
+  shouldComponentUpdate(nextProps, nextState) {
+    /*
+     * If you return false here the component will not be rerendered.
+     */
+    return true;
   }
 
-  componentWillUpdate() {
-    console.log('updating')
+  componentWillUpdate(nextProps, nextState) {
+    /*
+     * This gets called before rerendering.
+     * Do not modify state here.
+     * You can prepare for the update here (whatever that means).
+     */
+    console.log('updating', nextProps, nextState)
   }
 
-  componentDidUpdate() {
-    console.log('updated')
+  componentDidUpdate(prevProps, prevState) {
+    /*
+     * This gets called after rerendering.
+     * Do not modify state here because it will cause another rerender.
+     * You can perform any DOM operations here based on prop/state changes.
+     */
+    console.log('updated', prevProps, prevState)
   }
 
   componentWillUnmount() {
-    // cleanup e.g. clearInterval
+    /*
+     * Do any cleanup like canceling timeouts, closing WebSocket connections etc.
+     */
     console.log('component will unmount')
-    if (this.interval) {
-      clearInterval(this.interval)
-    }
+  }
+
+  increment() {
+    this.setState({value: this.state.value + 1})
   }
 
   render() {
     return (
       <div>
-        <p>{this.props.a}</p>
         <p>{this.state.value}</p>
+        <button onClick={this.increment}>Increment</button>
       </div>
     )
   }
 }
 
 return <LifecycleExample />
+
+/*
+ * EXERCISE
+ * ========
+ * Make the component rerender only when the value is even
+ */
