@@ -33,6 +33,7 @@ class CMEditor extends Component {
           options={{
             tabSize: 2,
             mode: 'jsx',
+            lineWrapping: true,
             theme: 'default'
           }}
           autoFocus

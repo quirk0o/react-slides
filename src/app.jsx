@@ -145,7 +145,7 @@ const reactSlides = [
     header: 'Lifecycle Methods',
     description: (
       <div>
-        Please open <a href="https://reactarmory.com/guides/lifecycle-simulators" target="_blank">this link</a>.
+        Please open <a href="https://reactarmory.com/guides/lifecycle-simulators" target="_blank">this link</a>.<br/>
         <a href="http://busypeoples.github.io/post/react-component-lifecycle/" target="_blank">Lifecycle</a>.
       </div>
     ),
@@ -170,6 +170,11 @@ const reactSlides = [
     header: 'Children',
     description: '',
     code: require('!raw-loader!./examples/react/children')
+  },
+  {
+    header: 'Passing props to children',
+    description: '',
+    code: require('!raw-loader!./examples/react/passing-props')
   }
 ]
 
