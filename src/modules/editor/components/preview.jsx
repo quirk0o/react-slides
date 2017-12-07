@@ -8,6 +8,8 @@ import BoxButton from 'modules/editor/components/box-button'
 
 window.React = require('react')
 window.ReactDOM = require('react-dom')
+window.Redux = require('redux')
+window.ReactRedux = require('react-redux')
 window.glamorous = require('glamorous').default
 
 const {Div} = glamorous
@@ -66,7 +68,7 @@ class Preview extends React.Component {
         position="relative"
         overflow="scroll"
       >
-        <div ref={ref => this.mountNode = ref} />
+        <div ref={ref => this.mountNode = ref} id="preview" />
         <BoxButton onClick={this.handleRun}>Run</BoxButton>
       </Div>
     )

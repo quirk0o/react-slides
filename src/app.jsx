@@ -145,7 +145,7 @@ const reactSlides = [
     header: 'Lifecycle Methods',
     description: (
       <div>
-        Please open <a href="https://reactarmory.com/guides/lifecycle-simulators" target="_blank">this link</a>.<br/>
+        Please open <a href="https://reactarmory.com/guides/lifecycle-simulators" target="_blank">this link</a>.<br />
         <a href="http://busypeoples.github.io/post/react-component-lifecycle/" target="_blank">Lifecycle</a>.
       </div>
     ),
@@ -175,6 +175,24 @@ const reactSlides = [
     header: 'Passing props to children',
     description: '',
     code: require('!raw-loader!./examples/react/passing-props')
+  }
+]
+
+const reduxSlides = [
+  {
+    header: 'Basic Redux',
+    description: '',
+    code: require('!raw-loader!./examples/redux/base')
+  },
+  {
+    header: 'Redux with React',
+    description: '',
+    code: require('!raw-loader!./examples/redux/react')
+  },
+  {
+    header: 'Connect',
+    description: '',
+    code: require('!raw-loader!./examples/redux/connect')
   }
 ]
 
@@ -208,6 +226,21 @@ const App = () => (
         )}
       />
     ))}
+    {reduxSlides.map((slide, idx) => (
+      <Route
+        key={`redux_${idx}`}
+        exact
+        path={`/redux/${idx + 1}`}
+        render={() => (
+          <Slide
+            id={idx + 1}
+            maxId={reduxSlides.length}
+            {...slide}
+          />
+        )}
+      />
+    ))}
+
   </Layout>
 )
 
