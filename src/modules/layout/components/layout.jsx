@@ -1,11 +1,17 @@
 import React from 'react'
 import glamorous from 'glamorous'
 
-const Layout = glamorous.div({
+const StyledLayout = glamorous.div({
   background: '#f9f9f9',
   height: '100%',
   width: '100%'
 })
-Layout.displayName = 'Layout'
+StyledLayout.displayName = 'StyledLayout'
+
+const Layout = ({children}) => (
+  <StyledLayout>
+    {children}
+  </StyledLayout>
+)
 
 export default Layout

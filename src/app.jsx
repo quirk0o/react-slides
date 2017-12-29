@@ -180,6 +180,23 @@ const reactSlides = [
 
 const reduxSlides = [
   {
+    header: 'Flux',
+    description: (
+      <img src={require('./examples/redux/flux.png')} />
+    ),
+    panes: []
+  },
+  {
+    header: 'Problems with state in React',
+    description: '',
+    code: require('!raw-loader!./examples/redux/god')
+  },
+  {
+    header: 'Another way to manage state',
+    description: '',
+    code: require('!raw-loader!./examples/redux/intro')
+  },
+  {
     header: 'Basic Redux',
     description: '',
     code: require('!raw-loader!./examples/redux/base')
