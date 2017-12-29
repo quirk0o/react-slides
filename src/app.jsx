@@ -108,7 +108,13 @@ const reactSlides = [
   },
   {
     header: 'A component has to return a single element',
-    description: '',
+    description: (
+      <div>
+        <p>This slide applies to React v15 and lower.</p>
+        <a href="https://reactjs.org/blog/2017/11/28/react-v16.2.0-fragment-support.html"> React v16 Fragment
+          support</a>
+      </div>
+    ),
     code: require('!raw-loader!./examples/react/single-element')
   },
   {
