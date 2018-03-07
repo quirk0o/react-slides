@@ -216,6 +216,11 @@ const reduxSlides = [
     header: 'Connect',
     description: '',
     code: require('!raw-loader!./examples/redux/connect')
+  },
+  {
+    header: 'Connect Exercise',
+    description: '',
+    code: require('!raw-loader!./examples/redux/connect-exercise')
   }
 ]
 

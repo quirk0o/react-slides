@@ -28,12 +28,12 @@ const Counter = ({value, onIncrement, onDecrement}) => (
   </div>
 )
 
-// He're we're mapping the state to the `value` prop
+// Here we're mapping the state to the `value` prop
 const mapStateToProps = (state) => ({
   value: state
 })
 
-// He're were creating callbacks that dispatch increment/decrement actions when called
+// Here we're creating callbacks that dispatch increment/decrement actions when called
 const mapDispatchToProps = (dispatch) => ({
   onIncrement: () => dispatch({
     type: 'INCREMENT'
