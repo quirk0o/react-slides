@@ -188,7 +188,7 @@ const reduxSlides = [
   {
     header: 'Flux',
     description: (
-      <img src={require('./examples/redux/flux.png')} />
+      <img src="https://facebook.github.io/flux/img/flux-simple-f8-diagram-explained-1300w.png" />
     ),
     panes: []
   },

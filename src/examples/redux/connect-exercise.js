@@ -1,3 +1,15 @@
+const {createStore} = Redux
+const {Provider, connect} = ReactRedux
+
+const todos = (state = [], action) => {
+  switch (action.type) {
+    default:
+      return state
+  }
+}
+
+const store = createStore(todos)
+
 const Counter = ({todos}) => (
   <div>
     <h2>Completed todos: {todos.filter(todo => todo.completed).length}</h2>
@@ -21,22 +33,14 @@ const TodoInput = ({value, onChange}) => (
   <input type="text" value={value} onChange={(e) => onChange(e.target.value)} placeholder="New Todo" />
 )
 
-let todoId = 1
-
-class God extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      todoInput: '',
-      todos: [
-        {id: todoId++, text: 'Buy milk', completed: false}
-      ]
-    }
+    this.state = {todoInput: ''}
 
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleAddTodo = this.handleAddTodo.bind(this)
-    this.handleTodoToggle = this.handleTodoToggle.bind(this)
   }
 
   handleInputChange(value) {
@@ -44,32 +48,32 @@ class God extends React.Component {
   }
 
   handleAddTodo() {
-    this.setState(state => ({
-      todos: state.todos.concat([{id: todoId++, text: state.todoInput, completed: false}])
-    }))
-  }
 
-  handleTodoToggle(id) {
-    this.setState(state => {
-      const todoIdx = state.todos.findIndex(todo => todo.id === id)
-      const todo = state.todos[todoIdx]
-      const updatedTodo = {...todo, completed: !todo.completed}
-      return {todos: state.todos.slice(0, todoIdx).concat([updatedTodo]).concat(state.todos.slice(todoIdx + 1))}
-    })
   }
 
   render() {
-    const {todoInput, todos} = this.state
+    const {todoInput} = this.state
 
     return (
       <div>
-        <Counter todos={todos} />
+        <Counter />
         <TodoInput value={todoInput} onChange={this.handleInputChange} />
         <button onClick={this.handleAddTodo}>Add Todo</button>
-        <TodoList todos={todos} onTodoToggle={this.handleTodoToggle} />
+        <TodoList />
       </div>
     )
   }
 }
 
-return <God />
+return (
+  <Provider store={store}>
+    <App />
+  </Provider>
+)
+
+/*
+ * EXERCISE
+ * ========
+ * Recreate the todo example app with the use of Redux. Use the building blocks above to get started
+ */
+
