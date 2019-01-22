@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route} from 'react-router-dom'
 
-import {Layout} from 'modules/layout'
+import {HomeLink, Layout, Nav, NavLink} from 'modules/layout'
 import {Slide} from 'modules/slides'
 
 const jsSlides = [
@@ -226,6 +226,20 @@ const reduxSlides = [
 
 const App = () => (
   <Layout>
+    <Route
+      exact
+      path="/"
+      render={() => (
+        <Nav>
+          <NavLink to="/js/1">Modern JavaScript</NavLink>
+          <NavLink to="/react/1">React</NavLink>
+          <NavLink to="/redux/1">Redux</NavLink>
+        </Nav>
+      )}
+    />
+    <Route path="/(.+)" render={() => (
+      <HomeLink />
+    )} />
     {jsSlides.map((slide, idx) => (
       <Route
         key={`js_${idx}`}

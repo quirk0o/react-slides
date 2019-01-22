@@ -1,6 +1,10 @@
 @import "~normalize.css/normalize.css";
 @import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700,900');
 
+:root {
+  --color-primary: hsl(257, 49%, 35%);
+}
+
 html, body, #root {
   height: 100vh;
   width: 100vw;
