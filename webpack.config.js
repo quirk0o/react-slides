@@ -14,6 +14,7 @@ const babelConfig = {
 }
 
 const config = {
+  mode: process.env.NODE_ENV,
   context: path.resolve(__dirname, './src'),
   entry: ['./entry.jsx'],
   output: {
@@ -71,8 +72,8 @@ const config = {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: !isProd,
-              minimize: isProd
+              importLoaders: 1,
+              modules: false
             }
           },
           {
@@ -92,8 +93,8 @@ const config = {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: !isProd,
-              minimize: isProd
+              importLoaders: 2,
+              modules: false
             }
           },
           {

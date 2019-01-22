@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
 import glamorous from 'glamorous'
 
 const vBorders = (size) => ({borderLeft: `${size}px solid transparent`, borderRight: `${size}px solid transparent`})

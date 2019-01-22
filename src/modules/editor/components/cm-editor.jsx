@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
-import CodeMirror from 'react-codemirror'
+import {Controlled as CodeMirror} from 'react-codemirror2'
 import glamorous from 'glamorous'
 import chroma from 'chroma-js'
 
 import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/material.css'
 import 'codemirror/mode/jsx/jsx'
 import './cm-editor.scss'
 
@@ -19,7 +18,7 @@ class CMEditor extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(code) { this.setState({code}) }
+  handleChange(editor, data, code) { this.setState({code}) }
 
   render() {
     const {panes, className} = this.props
@@ -29,7 +28,7 @@ class CMEditor extends Component {
         {panes.includes('code')
         && <CodeMirror
           value={this.state.code}
-          onChange={this.handleChange}
+          onBeforeChange={this.handleChange}
           options={{
             tabSize: 2,
             mode: 'jsx',

@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
 import glamorous from 'glamorous'
 import BoxButton from './box-button'
 

@@ -1,4 +1,5 @@
 # IntelliJ project files
+.idea
 .idea/workspace.xml
 .idea/watcherTasks.xml
 out
