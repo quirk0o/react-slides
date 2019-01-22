@@ -49,18 +49,21 @@ CMEditor.defaultProps = {
   panes: ['code', 'preview', 'console']
 }
 
-export default glamorous(CMEditor)({
-  display: 'grid',
-  gridTemplateColumns: '50% 50%',
-  gridTemplateRows: '70% 30%',
-  height: '100%',
-  '> *:nth-child(3)': {gridColumnEnd: 'span 2'},
-  '> *': {
-    marginBottom: 20,
-    marginLeft: 10,
-    marginRight: 10,
-    background: chroma('#eeeeee').alpha(0.5).css(),
-    border: '1px solid #ddd',
-    padding: 20
-  }
-})
+export default glamorous(CMEditor)(
+  {
+    display: 'grid',
+    gridTemplateColumns: '50% 50%',
+    gridTemplateRows: '70% 30%',
+    height: '100%',
+    '> *:nth-child(3)': {gridColumnEnd: 'span 2'},
+    '> *': {
+      marginBottom: 20,
+      marginLeft: 10,
+      marginRight: 10,
+      background: chroma('#eeeeee').alpha(0.5).css(),
+      border: '1px solid #ddd',
+      padding: 20
+    }
+  },
+  ({panes}) => !panes.includes('preview') ? ({'> *:nth-child(1)': {gridColumnEnd: 'span 2'}}) : ({})
+)

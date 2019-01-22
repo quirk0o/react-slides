@@ -63,6 +63,7 @@ class Preview extends React.Component {
   render() {
     return (
       <Div
+        className={this.props.className}
         padding={20}
         display={!this.props.display && 'none'}
         position="relative"

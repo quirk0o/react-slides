@@ -9,22 +9,30 @@ const jsSlides = [
     header: 'Function scope',
     description: (
       <div>
-        <p>JavaScript has function scope: The scope changes inside functions.</p>
-        <p>Variables declared within a JavaScript function, become <strong>local</strong> to the function. They can only
-          be accessed within the function.</p>
-        <p>A variable declared outside any function, becomes <strong>global</strong>. All scripts and functions in the
-          application can access it.</p>
-        <p>If there is both a local and global variable with the same name the local variable shadows the global
-          variable.</p>
+        JavaScript has function scope: The scope changes inside functions.
+        Variables declared within a JavaScript function, become <strong>local</strong> to the function. They can only
+        be accessed within the function.
+        A variable declared outside any function, becomes <strong>global</strong>. All scripts and functions in the
+        application can access it.
+        If there is both a local and global variable with the same name the local variable shadows the global
+        variable.
       </div>
     ),
     code: require('!raw-loader!./examples/js/function')
   },
   {
+    header: 'Hoisting',
+    description: '',
+    code: ''
+  },
+  {
     header: 'Closures',
     description: 'Closure is when a function can remember and access its lexical scope even when it’s invoked outside its lexical scope.',
     code: require('!raw-loader!./examples/js/closures')
-  },
+  }
+]
+
+const modernJsSlides = [
   {
     header: 'Bind',
     description: 'The bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.',
@@ -231,7 +239,8 @@ const App = () => (
       path="/"
       render={() => (
         <Nav>
-          <NavLink to="/js/1">Modern JavaScript</NavLink>
+          <NavLink to="/js/1">JavaScript Refresher</NavLink>
+          <NavLink to="/modern_js/1">Modern JavaScript</NavLink>
           <NavLink to="/react/1">React</NavLink>
           <NavLink to="/redux/1">Redux</NavLink>
         </Nav>
@@ -249,6 +258,26 @@ const App = () => (
           <Slide
             id={idx + 1}
             maxId={jsSlides.length}
+            prevPath={idx === 0 ? null : `/js/${idx}`}
+            nextPath={idx + 1 >= jsSlides.length ? `/modern_js/1` : `/js/${idx + 2}`}
+            panes={['code', 'console']}
+            {...slide}
+          />
+        )}
+      />
+    ))}
+    {modernJsSlides.map((slide, idx) => (
+      <Route
+        key={`modern_js_${idx}`}
+        exact
+        path={`/modern_js/${idx + 1}`}
+        render={() => (
+          <Slide
+            id={idx + 1}
+            maxId={modernJsSlides.length}
+            prevPath={idx === 0 ? `/js/${jsSlides.length}` : `/modern_js/${idx}`}
+            nextPath={idx + 1 >= modernJsSlides.length ? `/react/1` : `/modern_js/${idx + 2}`}
+            panes={['code', 'console']}
             {...slide}
           />
         )}
@@ -263,6 +292,9 @@ const App = () => (
           <Slide
             id={idx + 1}
             maxId={reactSlides.length}
+            prevPath={idx === 0 ? `/modern_js/${modernJsSlides.length}` : `/react/${idx}`}
+            nextPath={idx + 1 >= reactSlides.length ? `/redux/1` : `/react/${idx + 2}`}
+            panes={['code', 'console', 'preview']}
             {...slide}
           />
         )}
@@ -277,6 +309,9 @@ const App = () => (
           <Slide
             id={idx + 1}
             maxId={reduxSlides.length}
+            prevPath={idx === 0 ? `/react/${reactSlides.length}` : `/redux/${idx}`}
+            nextPath={idx + 1 >= reduxSlides.length ? null : `/redux/${idx + 2}`}
+            panes={['code', 'console', 'preview']}
             {...slide}
           />
         )}

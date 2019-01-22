@@ -6,7 +6,7 @@
   "author": "quirk0o",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=${NODE_ENV:-development} API_URL=${API_URL:-http://localhost:4567} PORT=${PORT:-9000} webpack-dev-server",
+    "start": "NODE_ENV=${NODE_ENV:-development} API_URL=${API_URL:-http://localhost:4567} PORT=${PORT:-9000} webpack-dev-server --client-log-level error",
     "package": "NODE_ENV=${NODE_ENV:-production} webpack -p --progress",
     "test": "jest"
   },
