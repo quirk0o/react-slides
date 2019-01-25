@@ -1,33 +1,51 @@
 import React from 'react'
 import {Route} from 'react-router-dom'
 
-import {HomeLink, Layout, Nav, NavLink} from 'modules/layout'
+import {GlossaryLink, HomeLink, Layout, Nav, NavLink} from 'modules/layout'
 import {Slide} from 'modules/slides'
 
 const jsSlides = [
   {
-    header: 'Function scope',
+    header: 'Scope',
     description: (
       <div>
-        JavaScript has function scope: The scope changes inside functions.
-        Variables declared within a JavaScript function, become <strong>local</strong> to the function. They can only
-        be accessed within the function.
-        A variable declared outside any function, becomes <strong>global</strong>. All scripts and functions in the
-        application can access it.
-        If there is both a local and global variable with the same name the local variable shadows the global
-        variable.
+        <p><em>JavaScript has function scope: The scope changes inside functions. It does not change inside blocks
+          (`if`, `while`, etc.)</em></p>
+        <p>Variables declared within a JavaScript function, become <strong>local</strong> to the function. They can only
+          be accessed within the function.
+          A variable declared outside any function, becomes <strong>global</strong>. All scripts and functions in the
+          application can access it.
+          If there is both a local and global variable with the same name the local variable shadows the global
+          variable.</p>
       </div>
     ),
-    code: require('!raw-loader!./examples/js/function')
+    code: require('!raw-loader!./examples/js/scope')
   },
   {
     header: 'Hoisting',
-    description: '',
-    code: ''
+    description: (
+      <div>
+        <p><em>All variables declared with `var` and all functions are ”hoisted” (raised) to the top of the
+          current <strong>scope</strong>.</em></p>
+        <p>That means if a variable is declared anywhere in the function body it is actually accessible from the
+          beginning of the function.</p>
+        <p>Remember that only <strong>declarations</strong> are hoisted but <strong>assignments</strong> are not.
+          On the other hand, the whole definition is hoisted when it comes to functions</p>
+      </div>
+    ),
+    code: require('!raw-loader!./examples/js/hoisting')
   },
   {
     header: 'Closures',
-    description: 'Closure is when a function can remember and access its lexical scope even when it’s invoked outside its lexical scope.',
+    description: (
+      <div>
+        <p><em>In JS every function has access to Lexical Scope which contains the function's local variables and a
+          reference to the outer Lexical Scope (containing the function).</em></p>
+        <p>When a function is called outside of it's Lexical Scope it remembers and can access the variables defined in
+          it's Lexical Scope (even ones that are no longer accessible otherwise) - this is called
+          a <strong>Closure</strong></p>
+      </div>
+    ),
     code: require('!raw-loader!./examples/js/closures')
   }
 ]
@@ -232,6 +250,36 @@ const reduxSlides = [
   }
 ]
 
+const glossarySlides = [
+  {
+    header: 'Scope',
+    description: (
+      <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gridGap: 24}}>
+        <div>
+          <h3>Block</h3>
+          <p><em>Block scope is created within if statements, for statements, while statements, etc.</em></p> <p>that is
+          every time you use curly braces (except for object literals).</p>
+        </div>
+        <div>
+          <h3>Function</h3>
+          <p><em>Function scope only exists within functions.</em></p> <p>Every type of function (both declared with the
+          `function` keyword and arrow function) creates a new function scope</p>
+        </div>
+      </div>
+    )
+  },
+  {
+    header: 'Side Effects',
+    description: ''
+  },
+  {
+    header: 'Prototype',
+    description: ''
+  }
+]
+
+const createSlug = (name) => name.split(/\s/).map((word) => word.toLowerCase()).join('_')
+
 const App = () => (
   <Layout>
     <Route
@@ -247,7 +295,10 @@ const App = () => (
       )}
     />
     <Route path="/(.+)" render={() => (
-      <HomeLink />
+      <>
+        <HomeLink key="home-link" />
+        <GlossaryLink key="glossary-link" />
+      </>
     )} />
     {jsSlides.map((slide, idx) => (
       <Route
@@ -256,7 +307,7 @@ const App = () => (
         path={`/js/${idx + 1}`}
         render={() => (
           <Slide
-            id={idx + 1}
+            id={`js_${idx}`}
             maxId={jsSlides.length}
             prevPath={idx === 0 ? null : `/js/${idx}`}
             nextPath={idx + 1 >= jsSlides.length ? `/modern_js/1` : `/js/${idx + 2}`}
@@ -273,7 +324,7 @@ const App = () => (
         path={`/modern_js/${idx + 1}`}
         render={() => (
           <Slide
-            id={idx + 1}
+            id={`modern_js_${idx}`}
             maxId={modernJsSlides.length}
             prevPath={idx === 0 ? `/js/${jsSlides.length}` : `/modern_js/${idx}`}
             nextPath={idx + 1 >= modernJsSlides.length ? `/react/1` : `/modern_js/${idx + 2}`}
@@ -290,7 +341,7 @@ const App = () => (
         path={`/react/${idx + 1}`}
         render={() => (
           <Slide
-            id={idx + 1}
+            id={`react_${idx}`}
             maxId={reactSlides.length}
             prevPath={idx === 0 ? `/modern_js/${modernJsSlides.length}` : `/react/${idx}`}
             nextPath={idx + 1 >= reactSlides.length ? `/redux/1` : `/react/${idx + 2}`}
@@ -307,7 +358,7 @@ const App = () => (
         path={`/redux/${idx + 1}`}
         render={() => (
           <Slide
-            id={idx + 1}
+            id={`redux_${idx}`}
             maxId={reduxSlides.length}
             prevPath={idx === 0 ? `/react/${reactSlides.length}` : `/redux/${idx}`}
             nextPath={idx + 1 >= reduxSlides.length ? null : `/redux/${idx + 2}`}
@@ -318,6 +369,22 @@ const App = () => (
       />
     ))}
 
+    <Route
+      exact
+      path="/glossary"
+      render={() => (
+        <Nav>
+          {glossarySlides.map((slide) =>
+            <NavLink key={createSlug(slide.header)} to={`/glossary/${createSlug(slide.header)}`}>{slide.header}</NavLink>)}
+        </Nav>
+      )}
+    />
+    {glossarySlides.map((slide, idx) => (
+      <Route
+        key={`glossary-${idx}`}
+        path={`/glossary/${createSlug(slide.header)}`}
+        render={() => <Slide {...slide} panes={[]} />} />
+    ))}
   </Layout>
 )
 

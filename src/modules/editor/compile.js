@@ -4,7 +4,8 @@ export default function (code) {
   return transform(
     code,
     {
-      presets: ['react']
+      presets: ['react'],
+      plugins: ['proposal-class-properties']
     }
   ).code
 }

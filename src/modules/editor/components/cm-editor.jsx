@@ -9,16 +9,32 @@ import './cm-editor.scss'
 
 import Preview from './preview'
 import Console from './console'
+import BoxButton from 'modules/editor/components/box-button'
 
 class CMEditor extends Component {
   constructor(...args) {
     super(...args)
-    this.state = {code: this.props.initialValue || ''}
+    this.state = {code: localStorage.getItem(this.props.id) || this.props.initialValue || ''}
 
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(editor, data, code) { this.setState({code}) }
+  handleChange(editor, data, code) {
+    this.setState({code})
+  }
+
+  handleBlur = () => {
+    localStorage.setItem(this.props.id, this.state.code)
+  }
+
+  handleRun = () => {
+    this.preview.run()
+  }
+
+  handleReset = () => {
+    localStorage.removeItem(this.props.id)
+    this.setState({code: this.props.initialValue || ''})
+  }
 
   render() {
     const {panes, className} = this.props
@@ -29,6 +45,7 @@ class CMEditor extends Component {
         && <CodeMirror
           value={this.state.code}
           onBeforeChange={this.handleChange}
+          onBlur={this.handleBlur}
           options={{
             tabSize: 2,
             mode: 'jsx',
@@ -38,8 +55,14 @@ class CMEditor extends Component {
           autoFocus
         />
         }
-        <Preview code={this.state.code} display={panes.includes('preview')} />
+        <Preview
+          ref={(ref) => this.preview = ref}
+          code={this.state.code}
+          display={panes.includes('preview')}
+        />
         {panes.includes('console') && <Console />}
+        <BoxButton onClick={this.handleReset} right={120}>Reset</BoxButton>
+        <BoxButton onClick={this.handleRun}>Run</BoxButton>
       </div>
     )
   }

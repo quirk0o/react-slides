@@ -2,16 +2,8 @@ import React from 'react'
 import glamorous from 'glamorous'
 import BoxButton from './box-button'
 
-function wrapConsole(method, callback) {
-  const _console = console[method]
-  console[method] = function (...args) {
-    callback(...args)
-    _console(...args)
-  }
-}
-
 const ConsoleMessages = glamorous.ul({
-  overflow: 'scroll',
+  overflowY: 'scroll',
   margin: 0,
   height: '100%',
   fontSize: 14,
@@ -19,11 +11,19 @@ const ConsoleMessages = glamorous.ul({
   padding: 0
 })
 
-const ConsoleMessage = glamorous.li({
-  borderBottom: '1px solid #ddd',
-  padding: '5px 20px',
-  '> pre': {margin: 0}
-})
+const ConsoleMessage = glamorous.li(
+  {
+    fontFamily: 'monospace',
+    fontSize: 12,
+    borderBottom: '1px solid #ddd',
+    padding: '8px 24px',
+    '> pre': {margin: 0, whiteSpace: 'normal'}
+  },
+  ({type}) => ({
+    color: type === 'error' ? 'red' : type === 'warn' ? 'orange' : 'black',
+    background: type === 'error' ? '#FFF0F0' : type === 'warn' ? '#FFFBE5' : 'transparent'
+  })
+)
 
 function messageToString(msg) {
   if (typeof msg === 'undefined') {
@@ -48,27 +48,22 @@ class Console extends React.Component {
   }
 
   componentDidMount() {
-    this._log = console.log
-    this._warn = console.warn
-    this._error = console.error
-
-    console.log = (...args) => {
-      this.state.console.push({type: 'log', args})
-      this.setState({console: this.state.console})
-      return this._log.apply(console, args)
-    }
-
-    console.warn = (...args) => {
-      this.state.console.push({type: 'warn', args})
-      this.setState({console: this.state.console})
-      return this._warn.apply(console, args)
-    }
-
-    console.error = (...args) => {
-      this.state.console.push({type: 'error', args})
-      this.setState({console: this.state.console})
-      return this._error.apply(console, args)
-    }
+    const {proxy, revoke} = Proxy.revocable(console, {
+      get: (target, p, receiver) => {
+        if (['log', 'warn', 'error'].includes(p)) {
+          return (...args) => {
+            this.setState(
+              ({console}) => ({console: console.concat([{type: p, args}])}),
+              () => Reflect.get(target, p, receiver).apply(target, args)
+            )
+          }
+        }
+        return Reflect.get(target, p, receiver)
+      }
+    })
+    this._console = console
+    console = proxy
+    this._revoke = revoke
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -76,9 +71,8 @@ class Console extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log = this._log
-    console.warn = this._warn
-    console.error = this._error
+    console = this._console
+    this._revoke()
   }
 
   handleClear() {
@@ -87,12 +81,12 @@ class Console extends React.Component {
 
   render() {
     return (
-      <div className={this.props.className}>
+      <div className={this.props.className} style={{padding: 0}}>
         <ConsoleMessages innerRef={ref => this.messagesNode = ref}>
           {this.state.console.map(({type, args}, index) => (
-            <ConsoleMessage key={index}>
-              <pre>{args.map(arg => messageToString(arg)).join(' ')}</pre>
-            </ConsoleMessage>
+            args.map((arg, idx) => <ConsoleMessage key={`${index}-${idx}`} type={type}>
+              <pre>{messageToString(arg)}</pre>
+            </ConsoleMessage>)
           ))}
         </ConsoleMessages>
         <BoxButton onClick={this.handleClear}>Clear</BoxButton>

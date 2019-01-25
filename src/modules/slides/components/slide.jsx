@@ -20,19 +20,16 @@ const Description = glamorous.div({
   paddingLeft: 10,
   paddingRight: 10,
   paddingBottom: 24,
-  maxWidth: 800,
   lineHeight: 1.5
 })
 
 const Slide = ({header, description, code, panes, id, maxId, nextPath, prevPath, className}) => (
   <div className={className}>
     {prevPath && <Link to={prevPath}><NavArrow left size={30} color="#ddd" clickable /></Link>}
-    {/*{id > 1 && <Link to={`${id - 1}`}><NavArrow left size={30} color="#ddd" clickable /></Link>}*/}
     <Header>{header}</Header>
     <Description>{typeof description === 'string' ? <p>{description}</p> : description}</Description>
-    <CMEditor initialValue={code} panes={panes} />
+    <CMEditor initialValue={code} panes={panes} id={id} />
     {nextPath && <Link to={nextPath}><NavArrow right size={30} color="#ddd" clickable /></Link>}
-    {/*{id < maxId && <Link to={`${id + 1}`}><NavArrow right size={30} color="#ddd" clickable /></Link>}*/}
   </div>
 )
 
