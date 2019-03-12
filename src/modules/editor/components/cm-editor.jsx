@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Controlled as CodeMirror} from 'react-codemirror2'
 import glamorous from 'glamorous'
+import {css} from 'glamor'
 import chroma from 'chroma-js'
 
 import 'codemirror/lib/codemirror.css'
@@ -72,11 +73,13 @@ CMEditor.defaultProps = {
   panes: ['code', 'preview', 'console']
 }
 
+css.global('.CodeMirror', {height: 'auto !important'})
+
 export default glamorous(CMEditor)(
   {
     display: 'grid',
     gridTemplateColumns: '50% 50%',
-    gridTemplateRows: '70% 30%',
+    gridTemplateRows: 'auto 200px',
     '> *:nth-child(3)': {gridColumnEnd: 'span 2'},
     '> div': {
       marginBottom: 20,
