@@ -1,12 +1,18 @@
-const MyComponent = ({name}) => (
-  <div>
-    {/* To evaluate JS code in JSX you have to surround it with curly braces */}
-    {/* That includes comments too ;) */}
-    <p>Hello {name}</p>
-  </div>
-)
+function MyComponent(props) {
+  return (
+    <div>
+      {/* To evaluate JS code in JSX you have to surround it with curly braces */}
+      {/* That includes comments too ;) */}
+      <p>Hello {props.name}</p>
+    </div>
+  )
+}
 
-/* To pass an argument to a component you use PROPS as below (name="Bob") */
+/*
+ * To pass an argument to a component you use PROPS as below (name="Bob")
+ * Props are analogous to the HTML attributes in the React world
+ * They are passed as a single object to the component (function)
+ */
 return (
   <MyComponent name="Bob" />
 )

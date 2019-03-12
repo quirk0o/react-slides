@@ -57,6 +57,12 @@ class Preview extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    try {
+      ReactDOM.unmountComponentAtNode(this.mountNode)
+    } catch (e) { console.warn(e)}
+  }
+
   render() {
     return (
       <Div

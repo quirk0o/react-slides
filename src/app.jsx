@@ -102,6 +102,21 @@ const modernJsSlides = [
 
 const reactSlides = [
   {
+    header: 'How you write pure HTML',
+    description: '',
+    code: require('!raw-loader!./examples/react/intro-html')
+  },
+  {
+    header: 'How you write it in React',
+    description: 'Components are the fundamental building blocks of React. Everything you build will be made up of chunks that encapsulate smaller pieces of your view.',
+    code: require('!raw-loader!./examples/react/intro-react')
+  },
+  {
+    header: 'Encapsulating view and logic',
+    description: 'The logic and view in React are collocated inside components. This means you can reuse both the structure and behavior of a components across your application.',
+    code: require('!raw-loader!./examples/react/intro-logic')
+  },
+  {
     header: 'Basic component',
     description: 'You use JSX to define your components. JSX is a mix of JS and HTML but it compiles into JS underneath.',
     code: require('!raw-loader!./examples/react/stateless')
@@ -136,8 +151,10 @@ const reactSlides = [
     header: 'A component has to return a single element or array of elements',
     description: (
       <div>
-        <p>Alternatively a special `Fragment` syntax can be used that is equivalent to returning an array of elements.</p>
-        <p>This is useful for rendering some elements e.g. table rows that cannot contain divs - they can be extracted into a separate component without creating an invalid structure.</p>
+        <p>Alternatively a special `Fragment` syntax can be used that is equivalent to returning an array of
+          elements.</p>
+        <p>This is useful for rendering some elements e.g. table rows that cannot contain divs - they can be extracted
+          into a separate component without creating an invalid structure.</p>
       </div>
     ),
     code: require('!raw-loader!./examples/react/single-element')
@@ -384,7 +401,8 @@ const App = () => (
       render={() => (
         <Nav>
           {glossarySlides.map((slide) =>
-            <NavLink key={createSlug(slide.header)} to={`/glossary/${createSlug(slide.header)}`}>{slide.header}</NavLink>)}
+            <NavLink key={createSlug(slide.header)}
+                     to={`/glossary/${createSlug(slide.header)}`}>{slide.header}</NavLink>)}
         </Nav>
       )}
     />
