@@ -42,9 +42,9 @@ Slide.propTypes = {
 export default glamorous(Slide)({
   display: 'flex',
   flexDirection: 'column',
-  height: '100%',
+  height: '100vh',
   padding: '4%',
   '> h2': {flex: 'none'},
-  '> p': {flex: 'none'},
-  '> div': {flex: 'auto'}
+  '> div:first-of-type': {flex: 'none'},
+  '> div:nth-of-type(2)': {flex: 'auto'}
 })

@@ -77,9 +77,8 @@ export default glamorous(CMEditor)(
     display: 'grid',
     gridTemplateColumns: '50% 50%',
     gridTemplateRows: '70% 30%',
-    height: '100%',
     '> *:nth-child(3)': {gridColumnEnd: 'span 2'},
-    '> *': {
+    '> div': {
       marginBottom: 20,
       marginLeft: 10,
       marginRight: 10,
