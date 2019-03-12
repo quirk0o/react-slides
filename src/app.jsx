@@ -133,12 +133,11 @@ const reactSlides = [
     code: require('!raw-loader!./examples/react/declaring')
   },
   {
-    header: 'A component has to return a single element',
+    header: 'A component has to return a single element or array of elements',
     description: (
       <div>
-        <p>This slide applies to React v15 and lower.</p>
-        <a href="https://reactjs.org/blog/2017/11/28/react-v16.2.0-fragment-support.html"> React v16 Fragment
-          support</a>
+        <p>Alternatively a special `Fragment` syntax can be used that is equivalent to returning an array of elements.</p>
+        <p>This is useful for rendering some elements e.g. table rows that cannot contain divs - they can be extracted into a separate component without creating an invalid structure.</p>
       </div>
     ),
     code: require('!raw-loader!./examples/react/single-element')
