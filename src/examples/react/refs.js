@@ -3,25 +3,20 @@
  * with the reference, so you need to assign it to an instance variable in order to be able to use it.
  */
 
-class Refs extends React.Component {
+
+class DynamicElement extends React.Component {
+  handleChange = () => {
+    this.element.style.color = this.element.style.color === 'pink' ? 'blue' : 'pink'
+  }
+
   render() {
     return (
       <div>
-        <input ref={ref => this.input = ref} />
-        {/*
-         * You might find references to string refs but those are deprecated so don't use them :)
-         */}
-        <input hidden ref="deprecated" />
+        <button onClick={this.handleChange}>Change</button>
+        <p ref={ref => this.element = ref}>Hello</p>
       </div>
     )
   }
 }
 
-return <Refs />
-
-/*
- * EXERCISE
- * ========
- * Add a button that will focus the input above.
- * `focus` is a method on the input element.
- */
+return <DynamicElement />

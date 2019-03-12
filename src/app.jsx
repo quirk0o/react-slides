@@ -160,13 +160,23 @@ const reactSlides = [
         <p>Refs allow you to manipulate the underlying DOM Elements. Use this feature very sparingly!</p>
         <p>This might be useful in the following scenarios:</p>
         <ul>
-          <li>You need to focus an input.</li>
-          <li>You need to use the API of the DOM element/component from a library you're using.</li>
+          <li>You need to focus an input or use other DOM APIs.</li>
+          <li>You need to use the API of a component from a library you're using.</li>
           <li>You need to provide compatibility with legacy (aka. jQuery) solutions.</li>
         </ul>
       </div>
     ),
-    code: require('!raw-loader!./examples/react/uncontrolled')
+    code: require('!raw-loader!./examples/react/refs')
+  },
+  {
+    header: 'Refs to Components',
+    description: (
+      <div>
+        <p>You can also pass refs to components in order to all public methods declared on the component.</p>
+        <p>Do not use this unless an external library is forcing you to.</p>
+      </div>
+    ),
+    code: require('!raw-loader!./examples/react/component-refs')
   },
   {
     header: 'Uncontrolled input',
