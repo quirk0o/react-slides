@@ -91,12 +91,15 @@ css.global('.CodeMirror-scroll', {
 export default glamorous(CMEditor)(
   {
     display: 'grid',
-    gridTemplateColumns: '50% 50%',
-    gridTemplateRows: '1fr 200px',
-    overflow: 'hidden',
-    '> *:nth-child(3)': {
-      gridColumnEnd: 'span 2',
+    gridTemplateColumns: '6fr 4fr',
+    gridTemplateRows: '1fr 160px',
+    '@media (min-height: 860px)': {
+      gridTemplateRows: '1fr 200px'
     },
+    '@media (min-height: 1000px)': {
+      gridTemplateRows: '1fr 264px'
+    },
+    overflow: 'hidden',
     '> div': {
       overflow: 'hidden',
       marginBottom: 20,
@@ -107,5 +110,18 @@ export default glamorous(CMEditor)(
       padding: 20
     }
   },
-  ({panes}) => !panes.includes('preview') ? ({'> *:nth-child(1)': {gridColumnEnd: 'span 2'}}) : ({})
+  ({panes}) => !panes.includes('preview')
+    ? ({
+      '> *:nth-child(1)': {
+        gridColumnEnd: 'span 2'
+      },
+      '> *:nth-child(3)': {
+        gridColumnEnd: 'span 2'
+      }
+    })
+    : ({
+      '> *:nth-child(1)': {
+        gridRowEnd: 'span 2'
+      }
+    })
 )
