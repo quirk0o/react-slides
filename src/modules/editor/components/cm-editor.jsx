@@ -73,15 +73,32 @@ CMEditor.defaultProps = {
   panes: ['code', 'preview', 'console']
 }
 
-css.global('.CodeMirror', {height: 'auto !important'})
+css.global('.react-codemirror', {
+  display: 'flex',
+  flexDirection: 'column'
+})
+
+css.global('.CodeMirror', {
+  flex: '1',
+  display: 'flex',
+  flexDirection: 'column'
+})
+
+css.global('.CodeMirror-scroll', {
+  flex: '1'
+})
 
 export default glamorous(CMEditor)(
   {
     display: 'grid',
     gridTemplateColumns: '50% 50%',
-    gridTemplateRows: 'auto 200px',
-    '> *:nth-child(3)': {gridColumnEnd: 'span 2'},
+    gridTemplateRows: '1fr 200px',
+    overflow: 'hidden',
+    '> *:nth-child(3)': {
+      gridColumnEnd: 'span 2',
+    },
     '> div': {
+      overflow: 'hidden',
       marginBottom: 20,
       marginLeft: 10,
       marginRight: 10,

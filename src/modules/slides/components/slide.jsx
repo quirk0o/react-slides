@@ -42,7 +42,8 @@ Slide.propTypes = {
 export default glamorous(Slide)({
   display: 'flex',
   flexDirection: 'column',
-  height: '100vh',
+  height: '100%',
+  overflow: 'hidden',
   padding: '4%',
   '> h2': {flex: 'none'},
   '> div:first-of-type': {flex: 'none'},
