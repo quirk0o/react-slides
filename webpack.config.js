@@ -20,7 +20,7 @@ const config = {
   output: {
     filename: '[hash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
+    publicPath: ''
   },
   resolve: {
     extensions: ['.js', '.jsx']
