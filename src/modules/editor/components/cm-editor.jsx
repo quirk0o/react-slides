@@ -99,6 +99,9 @@ export default glamorous(CMEditor)(
     '@media (min-height: 1000px)': {
       gridTemplateRows: '1fr 264px'
     },
+    '> *:nth-child(1)': {
+      gridRowEnd: 'span 2'
+    },
     overflow: 'hidden',
     '> div': {
       overflow: 'hidden',
@@ -110,17 +113,9 @@ export default glamorous(CMEditor)(
       padding: 20
     }
   },
-  ({panes}) => !panes.includes('preview')
-    ? ({
-      '> *:nth-child(1)': {
-        gridColumnEnd: 'span 2'
-      },
+  ({panes}) =>
+    !panes.includes('preview') && ({
       '> *:nth-child(3)': {
-        gridColumnEnd: 'span 2'
-      }
-    })
-    : ({
-      '> *:nth-child(1)': {
         gridRowEnd: 'span 2'
       }
     })

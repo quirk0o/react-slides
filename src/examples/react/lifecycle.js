@@ -7,17 +7,19 @@ class LifecycleExample extends React.Component {
      * This is only called once when the component is created.
      */
 
-    this.state = {value: 1}
+    this.state = {value: props.initialValue}
 
     this.increment = this.increment.bind(this)
     console.log('constructed')
   }
 
-  componentWillMount() {
+  static getDerivedStateFromProps(props, state) {
     /*
-     * This gets called before the first render
+     * Return new state based on a change in props
+     * Use very sparingly - consider an anti-pattern
      */
-    console.log('mounting')
+    console.log('getting state from props')
+    return null
   }
 
   componentDidMount() {
@@ -32,19 +34,21 @@ class LifecycleExample extends React.Component {
     /*
      * If you return false here the component will not be rerendered.
      */
-    return true;
+    console.log('to update or not to update?')
+    return true
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  getSnapshotBeforeUpdate(prevProps, prevState) {
     /*
-     * This gets called before rerendering.
-     * Do not modify state here.
-     * You can prepare for the update here (whatever that means).
+     * Called after updating props, state and calling render but before committing to the DOM
+     * You can use this method to read the state of the DOM (e.g. scroll position)
+     * Anything you return from this method will be passed as a third argument to `componentDidUpdate`
      */
-    console.log('updating', nextProps, nextState)
+    console.log('getting snapshot')
+    return null
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     /*
      * This gets called after rerendering.
      * Do not modify state here because it will cause another rerender.
@@ -74,7 +78,7 @@ class LifecycleExample extends React.Component {
   }
 }
 
-return <LifecycleExample />
+return <LifecycleExample initialValue={0} />
 
 /*
  * EXERCISE

@@ -3,8 +3,8 @@ const MyTypeCheckedComponent = ({text, number}) => (
 )
 
 MyTypeCheckedComponent.propTypes = {
-  text: React.PropTypes.string.isRequired,
-  number: React.PropTypes.number.isRequired
+  text: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired
 }
 
 return <MyTypeCheckedComponent number="abc" />

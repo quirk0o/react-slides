@@ -21,20 +21,20 @@ const jsSlides = [
     ),
     code: require('!raw-loader!./examples/js/scope')
   },
-  {
-    header: 'Hoisting',
-    description: (
-      <div>
-        <p><em>All variables declared with `var` and all functions are ”hoisted” (raised) to the top of the
-          current <strong>scope</strong>.</em></p>
-        <p>That means if a variable is declared anywhere in the function body it is actually accessible from the
-          beginning of the function.</p>
-        <p>Remember that only <strong>declarations</strong> are hoisted but <strong>assignments</strong> are not.
-          On the other hand, the whole definition is hoisted when it comes to functions</p>
-      </div>
-    ),
-    code: require('!raw-loader!./examples/js/hoisting')
-  },
+  // {
+  //   header: 'Hoisting',
+  //   description: (
+  //     <div>
+  //       <p><em>All variables declared with `var` and all functions are ”hoisted” (raised) to the top of the
+  //         current <strong>scope</strong>.</em></p>
+  //       <p>That means if a variable is declared anywhere in the function body it is actually accessible from the
+  //         beginning of the function.</p>
+  //       <p>Remember that only <strong>declarations</strong> are hoisted but <strong>assignments</strong> are not.
+  //         On the other hand, the whole definition is hoisted when it comes to functions</p>
+  //     </div>
+  //   ),
+  //   code: require('!raw-loader!./examples/js/hoisting')
+  // },
   {
     header: 'Closures',
     description: (
@@ -104,7 +104,8 @@ const reactSlides = [
   {
     header: 'How you write pure HTML',
     description: '',
-    code: require('!raw-loader!./examples/react/intro-html')
+    code: require('!raw-loader!./examples/react/intro-html'),
+    panes: ['code', 'preview']
   },
   {
     header: 'How you write it in React',
@@ -115,6 +116,20 @@ const reactSlides = [
     header: 'Encapsulating view and logic',
     description: 'The logic and view in React are collocated inside components. This means you can reuse both the structure and behavior of a components across your application.',
     code: require('!raw-loader!./examples/react/intro-logic')
+  },
+  {
+    header: 'Virtual DOM',
+    description: (
+      <>
+        <p>React uses an internal representation of the component tree that you create - it is called Virtual DOM.</p>
+        <p>When a component is updated the change is not immediately reflected in the browser DOM but instead
+          is applied to the Virtual DOM and then only the portion of the DOM that is actually different is updated.</p>
+        <div style={{display: 'flex', justifyContent: 'center'}}>
+          <img src="https://blog.codecentric.de/files/2017/11/Bildschirmfoto-2017-10-25-um-14.32.03.png" />
+        </div>
+      </>
+    ),
+    panes: []
   },
   {
     header: 'Basic component',
@@ -203,8 +218,8 @@ const reactSlides = [
     header: 'Lifecycle Methods',
     description: (
       <div>
-        Please open <a href="https://reactarmory.com/guides/lifecycle-simulators" target="_blank">this link</a>.<br />
-        <a href="http://busypeoples.github.io/post/react-component-lifecycle/" target="_blank">Lifecycle</a>.
+        Please open <a href="http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/" target="_blank">this
+        link</a>.<br />
       </div>
     ),
     panes: []
@@ -213,11 +228,6 @@ const reactSlides = [
     header: 'Lifecycle Methods Example',
     description: '',
     code: require('!raw-loader!./examples/react/lifecycle')
-  },
-  {
-    header: 'Lifecycle Methods Continued',
-    description: '',
-    code: require('!raw-loader!./examples/react/lifecycle-cd')
   },
   {
     header: 'Prop Types',
@@ -233,6 +243,28 @@ const reactSlides = [
     header: 'Passing props to children',
     description: '',
     code: require('!raw-loader!./examples/react/passing-props')
+  },
+  {
+    header: 'Context',
+    description: (
+      <div>
+        <p>The Context API makes it easier to share state between components in different parts of the component tree.</p>
+        <p>Instead of passing props from </p>
+      </div>
+    ),
+    code: require('!raw-loader!./examples/react/context')
+  },
+  {
+    header: 'Hooks',
+    description: (
+      <div>
+        <p>This is a very recent addition to React. It provides a simpler way of using state and side effects without
+          the need to create a class component.</p>
+        <p>Hooks also allow to encapsulate related pieces of logic that would otherwise be scattered throughout the
+          component.</p>
+      </div>
+    ),
+    code: require('!raw-loader!./examples/react/hooks')
   }
 ]
 
@@ -323,7 +355,7 @@ const App = () => (
     <Route path="/(.+)" render={() => (
       <>
         <HomeLink key="home-link" />
-        <GlossaryLink key="glossary-link" />
+        {/*<GlossaryLink key="glossary-link" />*/}
       </>
     )} />
     {jsSlides.map((slide, idx) => (
@@ -395,23 +427,23 @@ const App = () => (
       />
     ))}
 
-    <Route
-      exact
-      path="/glossary"
-      render={() => (
-        <Nav>
-          {glossarySlides.map((slide) =>
-            <NavLink key={createSlug(slide.header)}
-                     to={`/glossary/${createSlug(slide.header)}`}>{slide.header}</NavLink>)}
-        </Nav>
-      )}
-    />
-    {glossarySlides.map((slide, idx) => (
-      <Route
-        key={`glossary-${idx}`}
-        path={`/glossary/${createSlug(slide.header)}`}
-        render={() => <Slide {...slide} panes={[]} />} />
-    ))}
+    {/*<Route*/}
+    {/*exact*/}
+    {/*path="/glossary"*/}
+    {/*render={() => (*/}
+    {/*<Nav>*/}
+    {/*{glossarySlides.map((slide) =>*/}
+    {/*<NavLink key={createSlug(slide.header)}*/}
+    {/*to={`/glossary/${createSlug(slide.header)}`}>{slide.header}</NavLink>)}*/}
+    {/*</Nav>*/}
+    {/*)}*/}
+    {/*/>*/}
+    {/*{glossarySlides.map((slide, idx) => (*/}
+    {/*<Route*/}
+    {/*key={`glossary-${idx}`}*/}
+    {/*path={`/glossary/${createSlug(slide.header)}`}*/}
+    {/*render={() => <Slide {...slide} panes={[]} />} />*/}
+    {/*))}*/}
   </Layout>
 )
 

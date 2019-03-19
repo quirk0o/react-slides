@@ -18,8 +18,9 @@ class ControlledInput extends React.Component {
   render() {
     return (
       <div>
-        <label>Controlled input</label>
-        <input value={this.state.value} onChange={this.handleChange} />
+        <label htmlFor="input">Controlled input</label>
+        <input id="input" value={this.state.value} onChange={this.handleChange} />
+        <p>{this.state.value}</p>
       </div>
     )
   }

@@ -49,12 +49,12 @@
     "postcss-loader": "^3.0.0",
     "prop-types": "^15.6.2",
     "raw-loader": "^1.0.0",
-    "react": "^16.7.0",
+    "react": "^16.8.4",
     "react-ace": "^6.3.2",
     "react-addons-test-utils": "^15.6.2",
     "react-codemirror": "^1.0.0",
     "react-codemirror2": "^5.1.0",
-    "react-dom": "^16.7.0",
+    "react-dom": "^16.8.4",
     "react-hot-loader": "4.6.3",
     "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
@@ -81,5 +81,8 @@
       "enzyme-to-json/serializer"
     ],
     "setupTestFrameworkScriptFile": "<rootDir>/test/index.js"
+  },
+  "dependencies": {
+    "rxjs": "^6.4.0"
   }
 }

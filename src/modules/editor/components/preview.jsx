@@ -4,12 +4,15 @@ import PropTypes from 'prop-types'
 import glamorous from 'glamorous'
 
 import compile from '../compile'
+import {Subject} from 'rxjs'
+import {debounceTime} from 'rxjs/operators'
 
 window.React = require('react')
 window.ReactDOM = require('react-dom')
 window.Redux = require('redux')
 window.ReactRedux = require('react-redux')
 window.glamorous = require('glamorous').default
+window.PropTypes = require('prop-types')
 
 const {Div} = glamorous
 
@@ -19,6 +22,8 @@ const EditorError = glamorous.pre({
 })
 
 class Preview extends React.Component {
+  code$ = new Subject()
+
   constructor(...args) {
     super(...args)
 
@@ -49,11 +54,17 @@ class Preview extends React.Component {
 
   componentDidMount() {
     this.executeCode(this.props.code)
+
+    this.code$subscription = this.code$.pipe(
+      debounceTime(2000)
+    ).subscribe((code) => {
+      this.executeCode(code)
+    })
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.code !== this.props.code) {
-      this.executeCode(this.props.code)
+      this.code$.next(this.props.code)
     }
   }
 
@@ -61,6 +72,7 @@ class Preview extends React.Component {
     try {
       ReactDOM.unmountComponentAtNode(this.mountNode)
     } catch (e) { console.warn(e)}
+    this.code$subscription.unsubscribe()
   }
 
   render() {
@@ -69,7 +81,7 @@ class Preview extends React.Component {
         className={this.props.className}
         padding={20}
         display={!this.props.display && 'none'}
-        overflow="scroll"
+        overflow="scroll !important"
       >
         <div ref={ref => this.mountNode = ref} id="preview" />
       </Div>
