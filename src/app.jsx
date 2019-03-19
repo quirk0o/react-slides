@@ -47,6 +47,15 @@ const jsSlides = [
       </div>
     ),
     code: require('!raw-loader!./examples/js/closures')
+  },
+  {
+    header: 'This',
+    description: (
+      <div>
+        <p>In JavaScript the `this` keyword is a little special.</p>
+      </div>
+    ),
+    code: require('!raw-loader!./examples/js/this')
   }
 ]
 
@@ -66,9 +75,7 @@ const modernJsSlides = [
     description: (
       <div>
         <p>An arrow function expression has a shorter syntax than a function expression.</p>
-        <p>It does not bind its own this, arguments.</p>
-        <p>These function expressions are best suited for non-method functions, and they cannot be used as
-          constructors.</p>
+        <p>It cannot be bound - `this` inside arrow functions is always assigned to `this` of the outer scope where the function is declared.</p>
       </div>
     ),
     code: require('!raw-loader!./examples/js/arrow')

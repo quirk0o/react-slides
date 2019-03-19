@@ -38,18 +38,15 @@ class Preview extends React.Component {
     try {
       ReactDOM.unmountComponentAtNode(this.mountNode)
     } catch (e) { console.warn(e)}
-    try {
-      clearTimeout(this.timeout)
-      setTimeout(() => ReactDOM.render(
-        eval(compile(`(function () { \n${code}\n }).bind({})()`)) || <div />,
-        this.mountNode
-      ), 0)
-    } catch (e) {
-      this.timeout = setTimeout(
-        () => console.error(e.toString()),
-        1000
-      )
-    }
+    clearTimeout(this.timeout)
+    setTimeout(() => {
+      try {
+        const element = eval(compile(`(function () { \n${code}\n }).bind({})()`))
+        return ReactDOM.render(element || <div />, this.mountNode)
+      } catch (e) {
+        console.error(e.toString())
+      }
+    }, 0)
   }
 
   componentDidMount() {

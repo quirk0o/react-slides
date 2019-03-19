@@ -51,6 +51,7 @@ class CMEditor extends Component {
             tabSize: 2,
             mode: 'jsx',
             lineWrapping: true,
+            lineNumbers: true,
             theme: 'default'
           }}
           autoFocus
@@ -100,7 +101,8 @@ export default glamorous(CMEditor)(
       gridTemplateRows: '1fr 264px'
     },
     '> *:nth-child(1)': {
-      gridRowEnd: 'span 2'
+      gridRowEnd: 'span 2',
+      padding: 0
     },
     overflow: 'hidden',
     '> div': {
